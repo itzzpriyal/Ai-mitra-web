@@ -159,7 +159,7 @@ export default function DBChatPage() {
       
       // Check if it's a network/connectivity issue
       if (errorMessage.includes('Failed to fetch') || errorMessage.includes('Network error') || errorMessage.includes('fetch failed')) {
-        setError(`🌐 **Network Connection Error**\n\n${errorMessage}\n\n**The external database API appears to be unavailable.**\n\n**Recommended Solutions:**\n✅ **Use Mock Mode** - Toggle to Mock Mode above to test the interface immediately\n🔄 **Try Again Later** - The external service might be temporarily down\n🌐 **Check Internet** - Verify your network connection\n📊 **Contact Support** - If this persists, the database service may have issues\n\n**Current Mode:** ${mockMode ? 'Mock Mode (should work offline)' : 'Live Database Mode (API unavailable)'}`)
+        setError(` **Network Connection Error**\n\n${errorMessage}\n\n**The external database API appears to be unavailable.**\n\n**Recommended Solutions:**\n**Use Mock Mode** - Toggle to Mock Mode above to test the interface immediately\n🔄 **Try Again Later** - The external service might be temporarily down\n🌐 **Check Internet** - Verify your network connection\n📊 **Contact Support** - If this persists, the database service may have issues\n\n**Current Mode:** ${mockMode ? 'Mock Mode (should work offline)' : 'Live Database Mode (API unavailable)'}`)
       } else if (errorMessage.includes('Connection test failed')) {
         // Already formatted error from testConnection
         setError(errorMessage)
@@ -215,11 +215,11 @@ export default function DBChatPage() {
       }
 
       const response = await apiResponse.json()
-      setError('✅ Connection test successful! Your database is accessible.')
+      setError(' Connection test successful! Your database is accessible.')
       
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Connection test failed'
-      setError(`❌ **Connection Test Failed**\n\n${errorMessage}\n\n**Troubleshooting Tips:**\n• Verify database server is running and accessible\n• Check if host, port, username, password, and database name are correct\n• Ensure your database allows remote connections\n• Check firewall settings\n• Try using Mock Mode to test the interface`)
+      setError(` **Connection Test Failed**\n\n${errorMessage}\n\n**Troubleshooting Tips:**\n• Verify database server is running and accessible\n• Check if host, port, username, password, and database name are correct\n• Ensure your database allows remote connections\n• Check firewall settings\n• Try using Mock Mode to test the interface`)
     } finally {
       setIsLoading(false)
     }
